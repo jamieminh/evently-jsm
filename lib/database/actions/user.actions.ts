@@ -1,4 +1,4 @@
-"user server";
+"use server";
 
 import { convertDocumentToObject, handleError } from "@/lib/utils";
 import { CreateUserParams, UpdateUserParams } from "@/types";
