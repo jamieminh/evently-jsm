@@ -22,7 +22,7 @@ const EventCard = ({ event, hidePrice, hasOrderLink }: Props) => {
     <div className="group relative rounded-xl overflow-hidden border min-h-[380px] w-full max-w-[400px] bg-white shadow-md transition-all hover:shadow-lg md:min-h-[460px] md:h-[460px]">
       <div className="w-full min-h-[150px] h-2/5 relative md:min-h-[200px]">
         <Link href={`/events/${event._id}`}>
-          <Image src={event.imageUrl} fill objectFit="cover" alt="event" />
+          <Image src={event.imageUrl} fill className="object-cover" alt="event" />
         </Link>
       </div>
 
