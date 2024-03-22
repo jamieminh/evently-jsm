@@ -9,7 +9,7 @@ export default authMiddleware({
     "/",
     "/events/:id",
     "/api/webhooks/clerk",
-    "/api/webhook/stripe",
+    "/api/webhooks/stripe",
     "/api/uploadthing",
   ],
   // Prevent the specified routes from accessing

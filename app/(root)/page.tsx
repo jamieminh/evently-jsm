@@ -1,8 +1,28 @@
+import CategoryFilter from "@/components/shared/CategoryFilter";
+import Collection from "@/components/shared/Collection";
+import Search from "@/components/shared/Search";
 import { Button } from "@/components/ui/button";
+import { getAllEvents } from "@/lib/actions/event.actions";
+import { CollectionTypes, SearchParamProps } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Home() {
+const EVENTS_LIMIT: number = 3;
+
+export default async function Home({ searchParams }: SearchParamProps) {
+  const page = Number(searchParams?.page) || 1;
+  const searchText = (searchParams?.query as string) || "";
+  const category = (searchParams?.category as string) || "";
+
+  const eventsResponse = await getAllEvents({
+    query: searchText,
+    category,
+    limit: EVENTS_LIMIT,
+    page,
+  });
+
+  console.log("eventsResponse", eventsResponse);
+
   return (
     <>
       <section className="bg-primary-50 bg-dotted-pattern bg-contain py-5 md:py-10">
@@ -14,6 +34,10 @@ export default function Home() {
             <p className="p-regular-20 md:p-regular-24">
               Book and lern helpful tips from 1,102+ mentors in world-class
               companies with our global community.
+            </p>
+            <p className="text-xs">
+              **Every event in this website is entirely FICTIONAL, take them
+              with no salt.
             </p>
             <Button className="button w-full sm:w-fit" size={"lg"} asChild>
               <Link href="#events">Explore Now</Link>
@@ -38,9 +62,18 @@ export default function Home() {
         </h2>
 
         <div className="flex w-full flex-col gap-5 md:flex-row">
-          Seearch 
-          Categories
+          <Search placeholder="Search title..." />
+          <CategoryFilter placeholder="Category" />
         </div>
+        <Collection
+          data={eventsResponse?.data}
+          emptyTitle="No Events Found"
+          emptyStateSubtext="Come back later"
+          collectionType={CollectionTypes.All_Events}
+          limit={EVENTS_LIMIT}
+          page={page}
+          totalPages={eventsResponse?.totalPages}
+        />
       </section>
     </>
   );

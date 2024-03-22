@@ -4,7 +4,7 @@ const MONGODB_URI = process.env.MONGODB_URI;
 
 // initialize cache with empty object if a mongoose connection has not been established
 // moongoose is a global object (not the imported package), so we can use it to store the connection
-// Each Server Actions will have to connectToDatabase, so if we're not caching the connection, 
+// Each Server Actions will have to connectToDatabase, so if we're not caching the connection,
 // we will be connecting to the database multiple times, causing database exhaustion and even damaging effect
 let cached = (global as any).mongoose || { conn: null, promise: null };
 

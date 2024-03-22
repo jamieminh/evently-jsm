@@ -1,21 +1,27 @@
+'use client'
 import Image from "next/image";
+import { useState } from "react";
+import { Separator } from "../ui/separator";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
+  SheetTrigger
 } from "../ui/sheet";
-import { Separator } from "../ui/separator";
 import NavItems from "./NavItems";
 
 type Props = {};
 
 const MobileNav = (props: Props) => {
+  // sepearate state to fix the sheet not closing when clicking links on mobile
+  const [sheetOpen, setSheetOpen] = useState(false);
+
+  const closeSheetHandler = () => {
+    setSheetOpen(false);
+  }
+
   return (
     <nav className="md:hidden">
-      <Sheet>
+      <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
         <SheetTrigger className="align-middle">
           <Image
             src="/assets/icons/menu.svg"
@@ -33,7 +39,7 @@ const MobileNav = (props: Props) => {
             height={38}
           />
           <Separator className="border border-gray-50" />
-          <NavItems />
+          <NavItems closeSheetHandler={closeSheetHandler} />
         </SheetContent>
       </Sheet>
     </nav>

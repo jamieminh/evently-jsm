@@ -125,10 +125,15 @@ export type GetOrdersByEventParams = {
   searchString: string;
 };
 
-export type GetOrdersByUserParams = {
+export type GetOrdersByBuyerParams = {
   userId: string | null;
   limit?: number;
   page: string | number | null;
+};
+
+export type GetOrdersByOrganizerParams = {
+  userId: string | null;
+  searchString: string;
 };
 
 // ====== URL QUERY PARAMS
@@ -147,3 +152,9 @@ export type SearchParamProps = {
   params: { id: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
+
+export enum CollectionTypes {
+  All_Events = "All_Events",
+  Events_Organized = "Events_Organized",
+  My_Tickets = "My_Tickets",
+}

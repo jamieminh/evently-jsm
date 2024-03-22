@@ -85,7 +85,7 @@ body {
 /* ========================================== TAILWIND STYLES */
 @layer utilities {
   .wrapper {
-    @apply max-w-7xl lg:mx-auto p-5 md:px-10 xl:px-0 w-full;
+    @apply max-w-7xl lg:mx-auto p-5 md:px-10 2xl:px-0 w-full;
   }
 
   .flex-center {
@@ -256,6 +256,18 @@ body {
 /* ========================================== REACT-DATEPICKER STYLES */
 .datePicker {
   width: 100%;
+}
+
+.event-form .react-datepicker {
+  border-radius: 0.5rem;
+}
+
+.event-form .react-datepicker-popper {
+  left: -50px !important;
+
+  @media(min-width: 767px) {
+    left: 0 !important;
+  }
 }
 
 .react-datepicker__input-container input {

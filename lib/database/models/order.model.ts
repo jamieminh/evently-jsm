@@ -6,6 +6,7 @@ export interface IOrder extends Document {
   totalAmount: string;
   event: { _id: string; title: string };
   buyer: { _id: string; firstName: string; lastName: string };
+  organizer: { _id: string; firstName: string; lastName: string };
 }
 
 export type IOrderItem = {
@@ -15,6 +16,7 @@ export type IOrderItem = {
   eventTitle: string;
   eventId: string;
   buyer: string;
+  organizer: string;
 };
 
 const OrderSchema = new Schema({
@@ -23,6 +25,7 @@ const OrderSchema = new Schema({
   totalAmount: { type: String },
   event: { type: Schema.Types.ObjectId, ref: "Event" },
   buyer: { type: Schema.Types.ObjectId, ref: "User" },
+  organizer: { type: Schema.Types.ObjectId, ref: "User" },
 });
 
 const Order = models.Order || model("Order", OrderSchema);

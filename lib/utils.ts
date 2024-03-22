@@ -102,6 +102,6 @@ export function handleError(error: unknown) {
   throw new Error(typeof error === "string" ? error : JSON.stringify(error));
 }
 
-export const convertDocumentToObject = (document: Document) => {
+export const convertDocumentToObject = (document: any) => {
   return JSON.parse(JSON.stringify(document));
 };

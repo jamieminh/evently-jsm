@@ -2,20 +2,20 @@
 
 import { convertDocumentToObject, handleError } from "@/lib/utils";
 import { CreateUserParams, UpdateUserParams } from "@/types";
-import { connectToDatabase } from "..";
-import User from "../models/user.model";
-import Event from "../models/event.model";
-import Order from "../models/order.model";
+import { connectToDatabase } from "../database";
+import User from "../database/models/user.model";
+import Event from "../database/models/event.model";
+import Order from "../database/models/order.model";
 import { revalidatePath } from "next/cache";
 
 export const getUserById = async (clerkId: string) => {
   try {
     await connectToDatabase();
 
-    const newUser = await User.findOne({ clerkId });
+    // const newUser = await User.findOne({ clerkId });
 
     // return a normal object instead of the mongo document
-    return convertDocumentToObject(newUser);
+    // return convertDocumentToObject(newUser);
   } catch (e) {
     handleError(e);
   }
