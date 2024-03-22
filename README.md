@@ -74,6 +74,7 @@ and many more, including code architecture and reusability
 
 ## <a name="more">🚀 References</a>
 
-- <a href="https://www.youtube.com/watch?v=zgGhzuBZOQg&ab_channel=JavaScriptMastery" target="_black">Build and Deploy a Full Stack Next 14 MERN Events App with Stripe, Typescript, Tailwind
+- <a href="https://www.youtube.com/watch?v=zgGhzuBZOQg&ab_channel=JavaScriptMastery" target="_blank">Build and Deploy a Full Stack Next 14 MERN Events App with Stripe, Typescript, Tailwind
 </a>
+
 - <a href="https://github.com/adrianhajdin/event_platform" target="_blank">adrianhajdin/event_platform</a>
