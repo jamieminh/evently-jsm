@@ -1,24 +1,18 @@
-import CategoryFilter from "@/components/shared/CategoryFilter";
 import Collection from "@/components/shared/Collection";
-import Search from "@/components/shared/Search";
 import { Button } from "@/components/ui/button";
 import { getAllEvents } from "@/lib/actions/event.actions";
-import { CollectionTypes, SearchParamProps } from "@/types";
+import { CollectionTypes } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 
 const EVENTS_LIMIT: number = 3;
 
-export default async function Home({ searchParams }: SearchParamProps) {
-  const page = Number(searchParams?.page) || 1;
-  const searchText = (searchParams?.query as string) || "";
-  const category = (searchParams?.category as string) || "";
-
+export default async function Home() {
   const eventsResponse = await getAllEvents({
-    query: searchText,
-    category,
+    query: "",
     limit: EVENTS_LIMIT,
-    page,
+    page: 1,
+    category: "",
   });
 
   console.log("eventsResponse", eventsResponse);
@@ -36,8 +30,9 @@ export default async function Home({ searchParams }: SearchParamProps) {
               companies with our global community.
             </p>
             <p className="text-xs">
-              **Every event in this website is entirely FICTIONAL, take them
-              with no salt.
+              **Every event in this website is entirely FICTIONAL. This website
+              is a educational personal project and is not intended for
+              commercial use.
             </p>
             <Button className="button w-full sm:w-fit" size={"lg"} asChild>
               <Link href="#events">Explore Now</Link>
@@ -57,22 +52,16 @@ export default async function Home({ searchParams }: SearchParamProps) {
         id="events"
         className="wrapper my-8 flex flex-col gap-8 md:gap-12"
       >
-        <h2 className="h2-bold ">
-          Trusted by <br /> Thousands of Events
-        </h2>
+        <h2 className="h2-bold ">Featured Events</h2>
 
-        <div className="flex w-full flex-col gap-5 md:flex-row">
-          <Search placeholder="Search title..." />
-          <CategoryFilter placeholder="Category" />
-        </div>
         <Collection
           data={eventsResponse?.data}
           emptyTitle="No Events Found"
           emptyStateSubtext="Come back later"
           collectionType={CollectionTypes.All_Events}
           limit={EVENTS_LIMIT}
-          page={page}
-          totalPages={eventsResponse?.totalPages}
+          page={1}
+          totalPages={1}
         />
       </section>
     </>

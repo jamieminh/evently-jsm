@@ -265,7 +265,7 @@ body {
 .event-form .react-datepicker-popper {
   left: -50px !important;
 
-  @media(min-width: 767px) {
+  @media (min-width: 767px) {
     left: 0 !important;
   }
 }
@@ -285,4 +285,25 @@ body {
 
 .react-datepicker__time-list-item--selected {
   background-color: #624cf5 !important;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-block;
+  border-top: 3px solid #705cf7;
+  border-right: 3px solid transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
