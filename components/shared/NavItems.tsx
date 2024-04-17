@@ -3,6 +3,8 @@ import { headerLinks } from "@/constants/types";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SheetClose } from "../ui/sheet";
+import { useRollbar } from "@rollbar/react";
+import { Button } from "../ui/button";
 
 type Props = {
   closeSheetHandler?: () => void;
@@ -21,6 +23,11 @@ type Props = {
 
 const NavItems = ({ closeSheetHandler = () => {} }: Props) => {
   const pathname = usePathname();
+  const rollbar = useRollbar();
+
+  const mockRollbarWarningLogger = () => {
+    rollbar.warning("Client warning message with Rollbar.");
+  };
 
   return (
     <ul className="md:flex-between flex w-full flex-col gap-5 items-start md:flex-row">
@@ -38,6 +45,14 @@ const NavItems = ({ closeSheetHandler = () => {} }: Props) => {
           </li>
         );
       })}
+      <Button asChild>
+        <li
+          className="flex-center p-medium-16 whitespace-nowrap cursor-pointer"
+          onClick={mockRollbarWarningLogger}
+        >
+          Log Warning
+        </li>
+      </Button>
     </ul>
   );
 };

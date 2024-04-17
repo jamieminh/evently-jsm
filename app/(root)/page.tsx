@@ -1,6 +1,7 @@
 import Collection from "@/components/shared/Collection";
 import { Button } from "@/components/ui/button";
 import { getAllEvents } from "@/lib/actions/event.actions";
+import { logServerInfo } from "@/lib/logger/rollbar-server";
 import { CollectionTypes } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,6 +17,18 @@ export default async function Home() {
   });
 
   console.log("eventsResponse", eventsResponse);
+
+  // the RollbarProvider in root layout will catch this error
+  const mockRollbarErrorLogger = () => {
+    throw new Error("This is a test error for Rollbar.");
+  };
+
+  const mockRollbarInfoLogger = () => {
+    logServerInfo("Log info from server component");
+  };
+
+  // mockRollbarErrorLogger();
+  // mockRollbarInfoLogger();
 
   return (
     <>
